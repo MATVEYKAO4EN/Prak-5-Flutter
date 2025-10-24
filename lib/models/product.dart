@@ -5,6 +5,7 @@ class Product {
   int quantity;
   int minQuantity;
   String icon;
+  String categoryId;
 
   Product({
     required this.id,
@@ -12,6 +13,7 @@ class Product {
     required this.quantity,
     required this.minQuantity,
     required this.icon,
+    required this.categoryId,
   });
 
   Product copyWith({
@@ -20,6 +22,7 @@ class Product {
     int? quantity,
     int? minQuantity,
     String? icon,
+    String? categoryId,
   }) {
     return Product(
       id: id ?? this.id,
@@ -27,6 +30,7 @@ class Product {
       quantity: quantity ?? this.quantity,
       minQuantity: minQuantity ?? this.minQuantity,
       icon: icon ?? this.icon,
+      categoryId: categoryId ?? this.categoryId,
     );
   }
 }

@@ -1,4 +1,4 @@
-// widgets/product_card.dart
+// widgets/product_card.dart (альтернативный вариант)
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 
@@ -70,18 +70,23 @@ class ProductCard extends StatelessWidget {
               ),
             ),
 
-            // Кнопки действий
-            Row(
-              children: [
-                IconButton(
-                  onPressed: onEdit,
-                  icon: const Icon(Icons.edit, color: Colors.blue),
+            // Компактное меню
+            PopupMenuButton<String>(
+              icon: const Icon(Icons.more_vert, color: Colors.grey),
+              itemBuilder: (context) => [
+                const PopupMenuItem<String>(
+                  value: 'edit',
+                  child: Text('Редактировать'),
                 ),
-                IconButton(
-                  onPressed: onDelete,
-                  icon: const Icon(Icons.delete, color: Colors.red),
+                const PopupMenuItem<String>(
+                  value: 'delete',
+                  child: Text('Удалить', style: TextStyle(color: Colors.red)),
                 ),
               ],
+              onSelected: (value) {
+                if (value == 'edit') onEdit();
+                if (value == 'delete') onDelete();
+              },
             ),
           ],
         ),

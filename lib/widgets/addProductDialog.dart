@@ -4,11 +4,13 @@ import '../models/product.dart';
 
 class AddEditProductDialog extends StatefulWidget {
   final Product? product;
+  final String categoryId;
   final Function(Product) onSave;
 
   const AddEditProductDialog({
     Key? key,
     this.product,
+    required this.categoryId,
     required this.onSave,
   }) : super(key: key);
 
@@ -51,6 +53,7 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
         quantity: int.parse(_quantityController.text),
         minQuantity: int.parse(_minQuantityController.text),
         icon: _iconController.text,
+        categoryId: widget.categoryId,
       );
 
       widget.onSave(product);
@@ -108,7 +111,10 @@ class _AddEditProductDialogState extends State<AddEditProductDialog> {
               ),
               TextFormField(
                 controller: _iconController,
-                decoration: const InputDecoration(labelText: 'Иконка (эмодзи)'),
+                decoration: const InputDecoration(
+                  labelText: 'Иконка (эмодзи)',
+                  hintText: '🥛 🧀 🍅',
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Введите иконку';
